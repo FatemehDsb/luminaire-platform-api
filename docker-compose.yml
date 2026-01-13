@@ -1,0 +1,16 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: luminaire-mysql
+    environment:
+      MYSQL_DATABASE: luminaire_db
+      MYSQL_USER: luminaire_user
+      MYSQL_PASSWORD: luminaire_pass
+      MYSQL_ROOT_PASSWORD: rootpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
