@@ -6,7 +6,7 @@ services:
       MYSQL_DATABASE: luminaire_db
       MYSQL_USER: luminaire_user
       MYSQL_PASSWORD: luminaire_pass
-      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_ROOT_PASSWORD: root_pass
     ports:
       - "3307:3306"
     volumes:
