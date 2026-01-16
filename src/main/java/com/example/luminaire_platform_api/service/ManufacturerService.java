@@ -1,4 +1,49 @@
 package com.example.luminaire_platform_api.service;
 
+import com.example.luminaire_platform_api.dto.ManufacturerResponseDTO;
+import com.example.luminaire_platform_api.exception.ResourceNotFoundException;
+import com.example.luminaire_platform_api.model.Manufacturer;
+import com.example.luminaire_platform_api.repository.ManufacturerRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
 public class ManufacturerService {
+
+    private final ManufacturerRepository repository;
+
+    public ManufacturerService(ManufacturerRepository repository){
+        this.repository = repository;
+    }
+
+    public List<ManufacturerResponseDTO> getAll(){
+        List<Manufacturer> manufacturerList = repository.findAll();
+        ManufacturerResponseDTO manufacturerResponseDTO ;
+        return
+                manufacturerList
+                        .stream()
+                        .map(this::toResponseDTO)
+                        .toList();
+    }
+
+    public ManufacturerResponseDTO getById(Long id){
+
+        Manufacturer manufacturer = repository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException(
+                        "Manufacturer not found with id" + id));
+        return  toResponseDTO(manufacturer);
+    }
+
+    //DTO TO ENTITY
+//    public Manufacturer ToEntity(ManufacturerRequestDTO manufacturerRequestDTO){
+//        return new Manufacturer(ManufacturerRequestDTO.)
+//    }
+
+
+    //ENTITY TO DTO
+    public ManufacturerResponseDTO toResponseDTO(Manufacturer manufacturer){
+        return new ManufacturerResponseDTO(manufacturer.getName());
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.luminaire_platform_api.controller;
+package com.example.luminaire_platform_api.exception;
 
 import jakarta.validation.ConstraintViolationException;
 
@@ -56,8 +56,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return  new ResponseEntity<>(body, status);
     }
 
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Object> handleResourceNotFound(ResourceNotFoundException ex){
+        Map<String , Object> body = new HashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", HttpStatus.NOT_FOUND);
+        body.put("message", ex.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
 
-
-    @ExceptionHandler(ConfigDataResourceNotFoundException.class)
 
 }
