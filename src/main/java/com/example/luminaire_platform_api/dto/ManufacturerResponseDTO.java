@@ -3,17 +3,16 @@ package com.example.luminaire_platform_api.dto;
 public class ManufacturerResponseDTO {
 
     private Long id;
-    private String name;
-    private String country;
+    private String name;;
 
     public ManufacturerResponseDTO() {
     }
 
-    public ManufacturerResponseDTO(Long id, String name, String country) {
-        this.id = id;
+    public ManufacturerResponseDTO( String name) {
         this.name = name;
-        this.country = country;
     }
+
+
 
     public Long getId() {
         return id;
@@ -31,20 +30,12 @@ public class ManufacturerResponseDTO {
         this.name = name;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
 
     @Override
     public String toString() {
         return "ManufacturerResponseDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", country='" + country + '\'' +
                 '}';
     }
 }
