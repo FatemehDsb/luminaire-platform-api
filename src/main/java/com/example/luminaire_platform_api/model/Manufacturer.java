@@ -26,6 +26,9 @@ public class Manufacturer {
         this.contactEmail= contactEmail;
     }
 
+    public Manufacturer(String name) {
+    }
+
     public Long getId() {
         return id;
     }
