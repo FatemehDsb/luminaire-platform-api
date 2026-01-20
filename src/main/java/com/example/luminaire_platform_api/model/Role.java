@@ -1,4 +1,4 @@
 package com.example.luminaire_platform_api.model;
 
-public class User {
+public class Role {
 }
