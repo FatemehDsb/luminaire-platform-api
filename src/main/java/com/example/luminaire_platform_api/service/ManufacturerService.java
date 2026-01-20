@@ -37,12 +37,19 @@ public class ManufacturerService {
         return  toResponseDTO(manufacturer);
     }
 
-    public ManufacturerResponseDTO addManufacturer(ManufacturerRequestDTO requestDTO){
+    public ManufacturerResponseDTO addManufacturer(ManufacturerRequestDTO requestDTO) throws BadRequestException {
         if (repository.existsByNameIgnoreCase(requestDTO.getName())) {
             throw new BadRequestException("Manufacturer already exists");
         }
         Manufacturer manufacturer = repository.save(toEntity(requestDTO));
                 return toResponseDTO(manufacturer);
+    }
+
+    public List<ManufacturerResponseDTO> searchByName(String name){
+        return repository.searchByName(name)
+                .stream()
+                .map(this::toResponseDTO)
+                .toList();
     }
 
     //DTO TO ENTITY

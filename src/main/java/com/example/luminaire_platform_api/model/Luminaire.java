@@ -8,6 +8,7 @@ public class Luminaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String itemNumber;
     private String name;
     private String type;
 
@@ -22,6 +23,13 @@ public class Luminaire {
         this.name= name;
         this.type= type;
 
+    }
+
+    public Luminaire(String itemNumber, String name, String type, Manufacturer manufacturer) {
+        this.itemNumber = itemNumber;
+        this.name = name;
+        this.type = type;
+        this.manufacturer = manufacturer;
     }
 
     public Long getId() {
@@ -54,5 +62,13 @@ public class Luminaire {
 
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    public String getItemNumber() {
+        return itemNumber;
+    }
+
+    public void setItemNumber(String itemNumber) {
+        this.itemNumber = itemNumber;
     }
 }

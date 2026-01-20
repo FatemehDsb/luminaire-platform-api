@@ -4,6 +4,9 @@ import com.example.luminaire_platform_api.dto.ManufacturerRequestDTO;
 import com.example.luminaire_platform_api.dto.ManufacturerResponseDTO;
 import com.example.luminaire_platform_api.service.ManufacturerService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import org.apache.coyote.BadRequestException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,11 +33,16 @@ public class ManufacturerController {
     public ManufacturerResponseDTO getById(@PathVariable Long id){
         return service.getById(id);
     }
-//    @GetMapping("/search")
-//    public ManufacturerResponseDTO dea
+    @GetMapping("/search")
+    public List<ManufacturerResponseDTO> searchManufacturer(@RequestParam
+                                                            @NotBlank
+                                                            @Size(min=2, message= "query must be at least 2 characters long")
+                                                            String query){
+        return service.searchByName(query);
+    }
 
     @PostMapping
-    public ManufacturerResponseDTO addManufacturer(@Valid @RequestBody ManufacturerRequestDTO requestDTO){
+    public ManufacturerResponseDTO addManufacturer(@Valid @RequestBody ManufacturerRequestDTO requestDTO) throws BadRequestException {
         return service.addManufacturer(requestDTO);
     }
 
