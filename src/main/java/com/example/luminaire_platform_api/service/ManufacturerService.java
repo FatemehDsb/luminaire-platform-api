@@ -33,7 +33,7 @@ public class ManufacturerService {
     public ManufacturerResponseDTO getById(Long id){
         Manufacturer manufacturer = repository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException(
-                        "Manufacturer not found with id" + id));
+                        "Manufacturer not found with id " + id));
         return  toResponseDTO(manufacturer);
     }
 

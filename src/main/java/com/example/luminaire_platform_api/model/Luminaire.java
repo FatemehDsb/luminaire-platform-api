@@ -1,5 +1,6 @@
 package com.example.luminaire_platform_api.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +17,7 @@ public class Luminaire {
 
     @ManyToOne
     @JoinColumn(name= "manufacturer_id")
+    @JsonManagedReference
     private Manufacturer manufacturer;
 
     public Luminaire(){}
@@ -71,4 +73,6 @@ public class Luminaire {
     public void setItemNumber(String itemNumber) {
         this.itemNumber = itemNumber;
     }
+
+
 }

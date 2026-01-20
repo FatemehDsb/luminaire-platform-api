@@ -1,6 +1,7 @@
 package com.example.luminaire_platform_api.dto;
 
 import com.example.luminaire_platform_api.model.Luminaire;
+import com.example.luminaire_platform_api.model.Manufacturer;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -21,13 +22,17 @@ public class LuminaireRequestDTO {
     @Size( min = 2, message = "name must contain at least 2 characters")
     private String name;
 
+
+    private Manufacturer manufacturer;
+
     public LuminaireRequestDTO(){
     }
 
-    public LuminaireRequestDTO(String itemNumber, String type, String name) {
+    public LuminaireRequestDTO(String itemNumber, String type, String name, Manufacturer manufacturer) {
         this.itemNumber = itemNumber;
         this.type = type;
         this.name = name;
+        this.manufacturer = manufacturer;
     }
 
     public String getItemNumber() {
@@ -52,5 +57,13 @@ public class LuminaireRequestDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
     }
 }
