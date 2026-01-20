@@ -1,7 +1,9 @@
 package com.example.luminaire_platform_api.controller;
 
+import com.example.luminaire_platform_api.dto.LuminaireRequestDTO;
 import com.example.luminaire_platform_api.dto.LuminaireResponseDTO;
 import com.example.luminaire_platform_api.service.LuminaireService;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;
@@ -31,8 +33,8 @@ public class LuminaireController {
     }
 
     @PostMapping
-    public LuminaireResponseDTO addLuminaire(@RequestParam @NotBlank @Size(min=2, message = "query must be at least 2 chatacters long")
-                                             String queries){
-        return service.addLuminaire(queries);
+    public LuminaireResponseDTO addLuminaire(@Valid @RequestParam
+                                             LuminaireRequestDTO luminaireRequestDTO){
+        return service.addLuminaire(luminaireRequestDTO);
     }
 }
