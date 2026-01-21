@@ -1,31 +1,26 @@
 package com.example.luminaire_platform_api.controller;
 
-import com.example.luminaire_platform_api.model.AppUser;
+import com.example.luminaire_platform_api.service.CustomUserDetailService;
 import com.example.luminaire_platform_api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/admin")
-public class AdminController {
-    private final UserService service;
+@RequestMapping("/authentication")
+public class AuthController {
 
-    public AdminController(UserService service) {
-        this.service = service;
-    }
+    @Value("${app.welcome-message}")
+    String message;
+    Service service;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @PostMapping("/login")
-    public 
+//    private final AuthenticationManager authenticationManager;
+//    private final CustomUserDetailService customUserDetailService;
+//
 
 
 
