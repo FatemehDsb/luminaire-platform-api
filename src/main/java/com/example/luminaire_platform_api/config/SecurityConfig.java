@@ -34,8 +34,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/","/public/**").permitAll()
-                        .requestMatchers("/products/**").permitAll()
+                        .requestMatchers("/","/luminaire/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                 )
 //
@@ -54,17 +53,17 @@ public class SecurityConfig {
         return builder.build();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService(){
-
-        UserDetails user = User
-                .withUsername("user")
-                .password(passwordEncoder().encode("user123"))
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(user);
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService(){
+//
+//        UserDetails user = User
+//                .withUsername("user")
+//                .password(passwordEncoder().encode("user123"))
+//                .roles("USER")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(user);
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder(){
